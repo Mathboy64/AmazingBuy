@@ -38,12 +38,7 @@ export class SignUpComponent implements OnInit {
     console.log('dateOfBirth: ' + this.newAccount.dateOfBirth);
     console.log('Account Type: ' + this.newAccount.accountType);
 
-    this.addAccount();
+    this.as.createAccount(this.newAccount);
 
   }
-
-  addAccount() 
-    {
-      this.as.createAccount(this.newAccount).subscribe();
-    }
 }

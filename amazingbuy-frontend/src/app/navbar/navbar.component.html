@@ -10,10 +10,23 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <form class="d-flex">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <button type="button" class="btn btn-secondary"><i class="bi-search"></i></button>
+                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchProduct" name="searchProduct">
+                    <button type="button" class="btn btn-secondary" (click)="handleClick()"><i class="bi-search"></i></button>
                 </div>
             </form>
+
+            <!--
+
+<div class="md-form" (focusin)="show = true" (focusout)="show = false">
+    <input type="search" name="searchText" [(ngModel)]="searchText" placeholder="Search text">
+    <div *ngIf="show">
+        <ul *ngFor="let product of products | filter: searchText">
+            <li class="list" (click)="handleClick(product)">{{product}}</li>
+        </ul>
+    </div>
+</div>
+
+            -->
             
             <span class="spacer"></span>
 
@@ -39,6 +52,11 @@
 
             </div>
         </div>
+
+
+
+
+
         <!--search bar-->
         <!--Signin/signup-->
         <!--on sign in

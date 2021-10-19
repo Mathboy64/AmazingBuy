@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CartCall } from '../cart-call';
 import { OrderService } from '../service/order.service';
+import { Product } from '../service/product';
+import { ProductService } from '../service/product.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,10 +11,18 @@ import { OrderService } from '../service/order.service';
   providers: [CartCall],
 })
 export class NavbarComponent implements OnInit {
+  products: string[] = [];
+  searchText!: string;
+  show: boolean = false;
   productsQuantity!: number;
 
-  constructor(private sharedDataService: CartCall, private os: OrderService) {
+  constructor(private sharedDataService: CartCall, private ps: ProductService, private os: OrderService) {
     // this.productsQuantity = 5;
+    this.ps.getAllProducts().subscribe((data) => {
+      data.forEach((element) => {
+        this.products.push(element.name);
+      });
+    });
   }
 
   ngOnInit(): void {
@@ -31,7 +41,9 @@ export class NavbarComponent implements OnInit {
       // console.log(res);
     });
   }
-  search() {}
+  handleClick(p: Product) {
+    console.log(p);
+  }
 
   onSignInChanges() {
     //hide signin/signup

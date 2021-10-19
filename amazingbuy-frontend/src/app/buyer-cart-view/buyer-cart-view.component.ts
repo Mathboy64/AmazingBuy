@@ -50,6 +50,7 @@ export class BuyerCartViewComponent implements OnInit {
     });
   }
 
+  
   getProducts(orders: Order) {
     this.unPaidProducts = [];
     orders.products.map((i) => {

@@ -11,7 +11,7 @@ import { SignAccount } from '../service/sign-account';
 })
 export class LoginComponent implements OnInit {
   
-  constructor(private as: AccountService) {}
+  constructor(private as: AccountService, private sa: SignAccount) {}
   signin:any={};
   myForm:any={};
   submitted=false;
@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSuccessSigning(account:Account) {
-    //SignAccount. = true;
     console.log("Success!");
   }
 
@@ -39,6 +38,7 @@ export class LoginComponent implements OnInit {
       .getAccountByEmailAndPassword(email, password)
       .subscribe((res) => {
         this.onSuccessSigning(res);
+        this.sa.setSignedAccount(res);
       });
     }catch(error){
       this.onFaliureSigning();
