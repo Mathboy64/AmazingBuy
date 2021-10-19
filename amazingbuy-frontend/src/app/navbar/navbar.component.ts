@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CartCall } from '../cart-call';
+import { Account } from '../service/account';
 import { OrderService } from '../service/order.service';
 import { Product } from '../service/product';
 import { ProductService } from '../service/product.service';
@@ -15,6 +16,10 @@ export class NavbarComponent implements OnInit {
   searchText!: string;
   show: boolean = false;
   productsQuantity!: number;
+  signedAccount = {};
+  // accountType: false,
+
+  isSeller = true;
 
   constructor(private sharedDataService: CartCall, private ps: ProductService, private os: OrderService) {
     // this.productsQuantity = 5;

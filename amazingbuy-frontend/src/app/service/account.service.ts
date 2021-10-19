@@ -14,7 +14,17 @@ export class AccountService {
   private signedAccount!:Account;
 
   private baseUrl = 'http://localhost:8080/account';
-  private baseUrl2 = 'http://localhost:8080/accounts';
+  private baseUrl2 = 'http://localhost:8080/api/accounts';
+  private authUrl = 'http://localhost:8080/auth';
+
+  signUp(account: Object): Observable<Object> {
+    return this.http.post(`${this.authUrl}/signup`, account);
+  }
+
+  signIn(account: Object): Observable<Object> {
+    console.log(account);
+    return this.http.post(`${this.authUrl}/signin`, account);
+  }
 
   getAccountById(id: number): Observable<any> {
     console.log("Works");

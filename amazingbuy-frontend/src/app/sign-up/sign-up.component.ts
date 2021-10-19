@@ -12,14 +12,7 @@ import { AccountService } from '../service/account.service';
 })
 export class SignUpComponent implements OnInit {
   constructor(private as: AccountService) {}
-
-  hide = true;
-  //fullname = new FormControl('', [Validators.required]);
-  //email = new FormControl('', [Validators.required, Validators.email]);
-  newAccount= new Account();
-  myForm:any={}
   
-
 /*  getErrorMessage() {
     if (this.email.hasError('required')) {
       return 'You must enter a value';
@@ -27,18 +20,40 @@ export class SignUpComponent implements OnInit {
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }*/
-
+  hide = true;
+  //fullname = new FormControl("", [Validators.required]);
+  //email = new FormControl("", [Validators.required, Validators.email]);
+  newAccount = new Account();
+  myForm: any = {};
+  /*  getErrorMessage() {
+    if (this.email.hasError("required")) {
+      return "You must enter a value";
+    }
+    return this.email.hasError("email") ? "Not a valid email" : "";
+  }*/
   ngOnInit(): void {}
-
   onAddAccount() {
-    
-    console.log('Full Name: '+ this.newAccount.fullName);
+    console.log('Full Name: ' + this.newAccount.fullName);
     console.log('Email: ' + this.newAccount.email);
     console.log('Password: ' + this.newAccount.password);
     console.log('dateOfBirth: ' + this.newAccount.dateOfBirth);
     console.log('Account Type: ' + this.newAccount.accountType);
-
-    this.as.createAccount(this.newAccount);
-
+    this.addAccount();
+    console.log(this.newAccount);
+  }
+  addAccount() {
+    this.as.signUp(this.newAccount).subscribe((res) => console.log(res));
   }
 }
+// import { Component, OnInit } from '@angular/core';
+// import { FormControl, Validators } from '@angular/forms';
+
+// @Component({
+//   selector: 'app-sign-up',
+//   templateUrl: './sign-up.component.html',
+//   styleUrls: ['./sign-up.component.css'],
+// })
+// export class SignUpComponent implements OnInit {
+//   hide = true;
+//   email = new FormControl('', [Validators.required, Validators.email]);
+
