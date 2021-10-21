@@ -39,7 +39,11 @@ export class BuyerProductViewComponent implements OnInit {
   orders!: Order[];
   currentOrder!: Order;
   updatedOrder!: Order;
-  isSeller = true;
+  isBuyer = true;
+  accountId: any = sessionStorage.getItem('id')
+    ? sessionStorage.getItem('id')
+    : 0;
+  signedId: number = this.accountId;
 
   date: string = `${new Date().getMonth()}${new Date().getDate()}${new Date().getFullYear()}`;
 
@@ -62,19 +66,31 @@ export class BuyerProductViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.signIn();
+    this.getAccountById(this.signedId);
+    this.getOrdersByAccountId(this.signedId);
+
     this.id = this.route.snapshot.params['id'];
     this.getProductById(this.id);
-    this.getOrdersByAccountId(1);
   }
 
-  signIn() {
-    this.as
-      .getAccountByEmailAndPassword('rob@gmail.edu', '1234')
-      .subscribe((res) => {
-        this.signedAccount = res;
-        // console.log(this.signedAccount.);
-      });
+
+  // signIn() {
+  //   this.as
+  //     .getAccountByEmailNPassword('rob@gmail.edu', '1234')
+  //     .subscribe((res) => {
+  //       this.signedAccount = res;
+  //       // console.log(this.signedAccount.);
+  //     });
+  // }
+  getAccountById(id: number) {
+    this.as.getAccountById(id).subscribe((res) => {
+      this.signedAccount = res;
+      this.isBuyer =
+        this.signedAccount.accountType.toLowerCase() === 'seller'
+          ? false
+          : true;
+    });
+
   }
 
   newOrderDetails() {
@@ -97,9 +113,13 @@ export class BuyerProductViewComponent implements OnInit {
   onAddToCart(product: Product) {
     this.selectedProduct.push(product);
     // console.log(this.selectedProduct);
-    this.currentOrder.paid === true
-      ? this.createOrder(this.newOrder)
-      : this.updateOrder(product);
+    if (!this.currentOrder) {
+      this.createOrder(this.newOrder);
+    } else {
+      this.currentOrder.paid === true
+        ? this.createOrder(this.newOrder)
+        : this.updateOrder(product);
+    }
     this.openSnackBar();
   }
   updateOrder(product: Product) {
@@ -120,7 +140,8 @@ export class BuyerProductViewComponent implements OnInit {
   getOrdersByAccountId(id: number) {
     this.os.findByAccountId(id).subscribe((res) => {
       this.orders = res;
-      this.currentOrder = this.orders[this.orders.length - 1];
+      console.log(res);
+      this.currentOrder = this.orders[this.orders?.length - 1];
       console.log(this.currentOrder);
       // this.selectedProduct = this.currentOrder.products;
       // console.log(this.selectedProduct);

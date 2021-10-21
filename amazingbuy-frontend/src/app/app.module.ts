@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StripeComponent } from './stripe/stripe.component';
@@ -49,6 +49,7 @@ import { ToastComponent } from './toast/toast.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { FilterPipe } from './filter.pipe';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { HttpInterceptorService } from './service/httpinterceptor.service';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,14 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatSnackBarModule,
     MatAutocompleteModule,
   ],
-  providers: [BsModalService],
+  providers: [
+    BsModalService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

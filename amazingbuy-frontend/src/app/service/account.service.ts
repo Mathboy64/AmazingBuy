@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Account } from './account';
 import { map } from 'rxjs/operators';
+import { SignedAccount } from './signed-account';
 import { Order } from './order';
 
 @Injectable({
@@ -21,14 +22,13 @@ export class AccountService {
     return this.http.post(`${this.authUrl}/signup`, account);
   }
 
-  signIn(account: Object): Observable<Object> {
+  signIn(account: Object): Observable<SignedAccount> {
     console.log(account);
-    return this.http.post(`${this.authUrl}/signin`, account);
+    return this.http.post<SignedAccount>(`${this.authUrl}/signin`, account);
   }
 
   getAccountById(id: number): Observable<any> {
-    console.log("Works");
-    return this.http.get(`${this.baseUrl}/${id}`);
+    return this.http.get(`${this.baseUrl2}/${id}`);
   }
 
   createAccount(account: Object): Observable<Object> {
