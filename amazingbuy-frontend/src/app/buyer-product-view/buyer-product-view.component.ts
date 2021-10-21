@@ -73,6 +73,7 @@ export class BuyerProductViewComponent implements OnInit {
     this.getProductById(this.id);
   }
 
+
   // signIn() {
   //   this.as
   //     .getAccountByEmailNPassword('rob@gmail.edu', '1234')
@@ -89,6 +90,7 @@ export class BuyerProductViewComponent implements OnInit {
           ? false
           : true;
     });
+
   }
 
   newOrderDetails() {
@@ -101,7 +103,11 @@ export class BuyerProductViewComponent implements OnInit {
   }
 
   getProductById(id: number) {
-    this.ps.findProductById(id).subscribe((res) => (this.product = res));
+    this.ps.findProductById(id).subscribe((res) => 
+    {
+      console.log(res);
+      (this.product = res)
+    });
   }
 
   onAddToCart(product: Product) {

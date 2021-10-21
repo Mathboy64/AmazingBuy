@@ -5,6 +5,8 @@ import { Account } from '../service/account';
 import { AccountService } from '../service/account.service';
 import { AuthenticationService } from '../service/auth.service';
 import { OrderService } from '../service/order.service';
+import { Product } from '../service/product';
+import { ProductService } from '../service/product.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +15,9 @@ import { OrderService } from '../service/order.service';
   providers: [CartCall],
 })
 export class NavbarComponent implements OnInit {
+  products: string[] = [];
+  searchText!: string;
+  show: boolean = false;
   productsQuantity!: number;
   signedAccount!: Account;
   // accountType: false,
@@ -31,7 +36,13 @@ export class NavbarComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private router: Router
   ) {
+
     // this.productsQuantity = 5;
+    this.ps.getAllProducts().subscribe((data) => {
+      data.forEach((element) => {
+        this.products.push(element.name);
+      });
+    });
   }
 
   ngOnInit(): void {

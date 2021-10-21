@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { Account } from '../service/account';
 import { AccountService } from '../service/account.service';
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -11,6 +12,14 @@ import { AccountService } from '../service/account.service';
 })
 export class SignUpComponent implements OnInit {
   constructor(private as: AccountService) {}
+  
+/*  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.email.hasError('email') ? 'Not a valid email' : '';
+  }*/
   hide = true;
   //fullname = new FormControl("", [Validators.required]);
   //email = new FormControl("", [Validators.required, Validators.email]);
@@ -48,18 +57,3 @@ export class SignUpComponent implements OnInit {
 //   hide = true;
 //   email = new FormControl('', [Validators.required, Validators.email]);
 
-//   getErrorMessage() {
-//     if (this.email.hasError('required')) {
-//       return 'You must enter a value';
-//     }
-
-//     return this.email.hasError('email') ? 'Not a valid email' : '';
-//   }
-//   constructor() {}
-
-//   ngOnInit(): void {}
-
-//   onAddAccount() {}
-
-//   createAccount() {}
-// }

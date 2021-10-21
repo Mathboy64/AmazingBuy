@@ -1,4 +1,22 @@
 <h2>Buyer Cart View</h2>
+
+<!--<table class="table">
+  <thead class="black white-text">
+    <tr>
+      <th *ngFor="let head of displayedColumns" scope="col">{{head}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ds of dataSource">
+      <th scope="row">{{ds.productId}}</th>
+      <td>{{ds.productName}}</td>
+      <td>{{ds.productPrice}}</td>
+      <td><button mdbBtn color="indigo" size="sm" mdbWavesEffect type="button" class="m-0">Remove</button></td>
+    </tr>
+  </tbody>
+</table> -->
+
+
 <div class="row">
   <div class="col-10">
     <table *ngIf="orders">
@@ -8,15 +26,16 @@
           <th>Product Name</th>
           <!-- <th>Cost</th> -->
           <th>Price</th>
+          <th>Remove</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let o of unPaidProducts">
           <td> <input type="text" readonly class="form-control" name="id" [(ngModel)]="o.id">
           </td>
-          <td> <input type="text" readonly class="form-control" name="paid" [(ngModel)]="o.name">
+          <td> <input type="text" readonly class="form-control" name="name" [(ngModel)]="o.name">
           </td>
-          <td> <input type="text" readonly class="form-control" name="shipped" [(ngModel)]="o.productPrice">
+          <td> <input type="text" readonly class="form-control" name="price" [(ngModel)]="o.productPrice">
           </td>
           <!-- <td> <input type="number" readonly class="form-control" name="price" value="10.99" [(ngModel)]="price">
           </td> -->

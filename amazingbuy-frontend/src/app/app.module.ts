@@ -32,12 +32,13 @@ import { SellerAddProductComponent } from './seller-add-product/seller-add-produ
 import { SellerEditProductComponent } from './seller-edit-product/seller-edit-product.component';
 import { AccountViewComponent } from './account-view/account-view.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-//import { MatInputModule } from '@angular/material/input';
-//import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MatSelectModule } from '@angular/material/select';
 import { LoginComponent } from './login/login.component';
-import { MatMenuModule } from '@angular/material/menu';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import { MatBadgeModule } from '@angular/material/badge';
 // MDB Angular Free
@@ -94,11 +95,12 @@ import { HttpInterceptorService } from './service/httpinterceptor.service';
     MatListModule,
     MatTableModule,
     MatFormFieldModule,
-    //MatInputModule,
-    //MatRadioModule,
+    MatInputModule,
+    MatRadioModule,
     ReactiveFormsModule,
     MatSelectModule,
     MatMenuModule,
+    NgbModule,
     MdbFormsModule,
     ModalModule,
     MatBadgeModule,

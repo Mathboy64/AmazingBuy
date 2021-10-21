@@ -30,12 +30,14 @@ import { Account } from '../service/account';
 import { SignedAccount } from '../service/signed-account';
 import { AuthenticationService } from '../service/auth.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  
   constructor(
     private as: AccountService,
     private authenticationService: AuthenticationService,
@@ -49,16 +51,19 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     console.log('hello');
   }
-  onSubmit(): void {
+  
+  
+  onSubmit():void {
     this.submitted = true;
-    console.log('Email: ' + this.signin);
-    // console.log('Password: ' + this.signin.Password);
-    this.signIn(this.signin);
+    console.log('Email: ' + this.signin.Email);
+    console.log('Password: ' + this.signin.Password);
+    this.signIn(this.signin.Email, this.signin.Password);
   }
-  onSuccessSigning(account: Account) {
-    //SignAccount. = true;
-    console.log('Success!');
+
+  onSuccessSigning(account:Account) {
+    console.log("Success!");
   }
+
   signIn(signIn: any) {
     try {
       this.as.signIn(signIn).subscribe((res) => {
@@ -78,11 +83,16 @@ export class LoginComponent implements OnInit {
         window.location.replace('/home');
         // this.router.navigate(['home']);
       });
-    } catch (error) {
+    }catch(error){
       this.onFaliureSigning();
     }
   }
-  onFaliureSigning(): void {
-    console.log('This is wrong');
-  }
+  
+onFaliureSigning():void {
+  console.log("This is wrong");
 }
+
+
+}
+
+

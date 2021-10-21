@@ -29,6 +29,7 @@ export class AccountViewComponent implements OnInit {
   //   this.as.getAllAccounts().subscribe((res) => (this.accounts = res));
   // }
   //this method will be moved to signIn-view
+
   // signIn() {
   //   this.as
   //     .getAccountByEmailNPassword('rob@gmail.edu', '1234')
@@ -37,6 +38,7 @@ export class AccountViewComponent implements OnInit {
   //       console.log(this.signedAccount);
   //     });
   // }
+
 
   getAccountById(id: number) {
     this.as.getAccountById(id).subscribe((res) => {
@@ -58,4 +60,9 @@ export class AccountViewComponent implements OnInit {
       (error) => console.log(error)
     );
   }
+
+  getSignedAccountDetails() {
+    
+  }
+
 }
